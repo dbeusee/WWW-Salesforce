@@ -1,25 +1,18 @@
 package WWW::Salesforce::Simple;
 
-use 5.008001;
 use strict;
 use warnings;
 
 use base 'WWW::Salesforce';
 
 #handle versioning and exporting
-use vars qw( $VERSION );
-$VERSION = $WWW::Salesforce::VERSION;
+our $VERSION = '0.304';
+$VERSION = eval $VERSION;
 
 # alias these methods to the base class
-*new = \&WWW::Salesforce::new;
-*bye = \&WWW::Salesforce::bye;
-*do_query = \&WWW::Salesforce::do_query;
-*do_queryAll = \&WWW::Salesforce::do_queryAll;
-*_retrieve_queryMore = \&WWW::Salesforce::_retrieve_queryMore;
-*get_field_list = \&WWW::Salesforce::get_field_list;
-*get_tables = \&WWW::Salesforce::get_tables;
 
-1;    #magically delicious
+1;
+
 __END__
 
 =pod
@@ -40,7 +33,7 @@ This class inherits all the methods from L<WWW::Salesforce> and adds the followi
 =head2 new( %parameters )
 
 Handles creating new Salesforce objects as well as the login process
-to use the salesforce objects. 
+to use the salesforce objects.
 
 =head2 do_query( $sql_query_string )
 
@@ -88,7 +81,7 @@ reference to an array of strings representing each table name.
     foreach my $field ( @{ $res } ) {
         print $field->{'Id'} . "\n";
     }
-    print "Found " . scalar @{$res} . " results\n";    
+    print "Found " . scalar @{$res} . " results\n";
 
 =head2 do_queryAll( $query )
 
@@ -99,7 +92,7 @@ reference to an array of strings representing each table name.
     foreach my $field ( @{ $res } ) {
         print $field->{'Id'} . "\n";
     }
-    print "Found " . scalar @{$res} . " results\n";    
+    print "Found " . scalar @{$res} . " results\n";
 
 =head2 get_field_list( $table_name )
 
@@ -132,10 +125,15 @@ resolve your issue online.
 
 =head1 AUTHORS
 
+Chase Whitener <F<capoeirab@cpan.org>>
+
 Fred Moyer <fred at redhotpenguin dot com>
 
-Chase Whitener <cwhitener at gmail dot com>
+=head1 COPYRIGHT & LICENSE
 
-=head1 COPYRIGHT
+Copyright 2003-2004 Byrne Reese, Chase Whitener, Fred Moyer. All rights reserved.
 
-No Copyright
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+=cut

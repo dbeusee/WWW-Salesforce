@@ -1,0 +1,30 @@
+/WWW-Salesforce*
+WWW-Salesforce*/
+WWW-Salesforce*.tar.gz
+Build
+/MANIFEST.SKIP.bak
+/MANIFEST.bak
+META.YML
+MYMETA*
+Makefile
+Makefile.old
+.perl-version
+pm_to_blib
+*.sw*
+*.tar.gz
+xx*
+*.bs
+*.o
+SSL
+blib
+blib/
+.build/
+_build/
+cover_db/
+/_eumm/
+# Ignore patch files
+*.rej
+*.orig
+# Ignore perltidy files
+*.bak
+*.ERR

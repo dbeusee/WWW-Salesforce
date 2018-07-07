@@ -4,38 +4,25 @@ use strict;
 use warnings;
 use SOAP::Lite;
 
-use vars qw( @ISA );
+our $VERSION = '0.304';
+$VERSION = eval $VERSION;
 
-@ISA = qw( SOAP::Deserializer );
+our @ISA = qw( SOAP::Deserializer );
 use strict 'refs';
 
-#**************************************************************************
-# new()
-#   -- constructor
-#**************************************************************************
-sub new {
-    my $class    = shift;
-    my $self     = $class->SUPER::new(@_);
-    my (%params) = @_;
-    return $self;
-}
+our $XSD_NSPREFIX     = "xsd";
+our $XSI_NSPREFIX     = "xsi";
+our $SOAPENV_NSPREFIX = "SOAP-ENV";
+our $SOAPENC_NSPREFIX = "SOAP-ENC";
+our $NSPREFIX         = "wsisup";
 
 BEGIN {
-    use vars qw($XSD_NSPREFIX $XSI_NSPREFIX $SOAPENV_NSPREFIX
-      $SOAPENC_NSPREFIX $NSPREFIX);
-
-    $XSD_NSPREFIX     = "xsd";
-    $XSI_NSPREFIX     = "xsi";
-    $SOAPENV_NSPREFIX = "SOAP-ENV";
-    $SOAPENC_NSPREFIX = "SOAP-ENC";
-    $NSPREFIX         = "wsisup";
-
     no strict 'refs';
     for my $class (qw(LoginResult)) {
         my $method_name = "as_" . $class;
         my $class_name  = "WWW::Salesforce::" . $class;
         my $method_body = <<END_OF_SUB;
-            
+
             sub $method_name {
                 my (\$self,\$f,\$name,\$attr) = splice(\@_,0,4);
                 my \$ns = pop;
@@ -90,5 +77,4 @@ sub as_Array {
     return \@Array;
 }
 
-#magically delicious
 1;
